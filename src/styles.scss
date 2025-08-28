@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'normalize';
+:root{
+    --backgroundMain: #F9FAFB;
+    --textMain: #111827;
+    --border: #F7C566;
+    --borderBtn: #6C0345;
+    --hoverTextButton: #F9FAFB;
+}
+
+html{
+    font-size: 62.5%;
+    box-sizing: border-box;
+}
+
+body{
+    font-size: 1.6rem;
+}
