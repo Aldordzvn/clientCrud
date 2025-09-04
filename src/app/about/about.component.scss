@@ -1,0 +1,36 @@
+@import '../styles/mixins/mixins';
+
+main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+}
+
+h1 {
+    font-size: 8rem;
+    margin: 0;
+    text-transform: capitalize;
+}
+
+p {
+    font-size: clamp(1.6rem, 1.486rem + 0.357vw, 2rem);
+    letter-spacing: .12rem;
+    font-weight: 500;
+}
+
+li{
+    font-size:clamp(1.6rem, 1.486rem + 0.357vw, 2rem);
+}
+
+.codeImg{
+    width: 40rem;
+    margin: 0 auto;
+}
+
+@include tablet {
+    h1 {
+        font-size: clamp(3rem, -0.571rem + 11.161vw, 8rem);
+
+    }
+}

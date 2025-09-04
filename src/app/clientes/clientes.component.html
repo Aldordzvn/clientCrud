@@ -1,0 +1,144 @@
+<main>
+    <article class="title__container">
+        <h1>Clientes</h1>
+        <button class="add" (click)="showForm()">
+            <fa-icon class="icon plus" [icon]="faUser"></fa-icon>
+            Añadir
+        </button>
+    </article>
+
+    <article class="article__table">
+        <table>
+            <colgroup>
+                <col class="nombre">
+                <col class="apellido">
+                <col class="genero">
+                <col class="direccion">
+                <col class="acciones">
+            </colgroup>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th class="th genero">Genero</th>
+                <th>Dirección</th>
+                <th>Acciones</th>
+            </tr>
+            <!-- @for (cliente of clientesArray$ | async; track cliente.id) { -->
+
+            <tr *ngFor="let cliente of ((clientesArray$ | async) || []) | paginate: {id:'desktopPagination',itemsPerPage: 5, currentPage: pageDesktop}; let i= index">
+                <td>{{cliente.nombre}}</td>
+                <td>{{cliente.apellido}}</td>
+                <td class="genero">{{cliente.genero}}</td>
+                <td class="direccion">{{cliente.direccion.fracc}} {{cliente.direccion.calle}}
+                    #{{cliente.direccion.numero}}</td>
+                <td>
+                    <span class="btn__group">
+                        <button class="editar" (click)="editForm(cliente.id!)">Editar</button>
+                        <button class="eliminar" (click)="showDeleteModal(cliente.id!)">Eliminar</button>
+                    </span>
+                </td>
+            </tr>
+            <!-- } -->
+        </table>
+
+        <div class="cards__mobile--container">
+            <div class="cliente__card" *ngFor="let cliente of ((clientesArray$ | async) || []) | paginate: {id: 'mobilePagination',itemsPerPage: 4, currentPage: pageMobile}; let i= index">
+                <div class="acciones__container">
+                    <button class="btnMobile editar"  (click)="editForm(cliente.id!)"> <fa-icon class="iconMobile edit" [icon]="faEdit"></fa-icon></button>
+                    <button class="btnMobile cancelar" (click)="showDeleteModal(cliente.id!)"><fa-icon class="iconMobile cancelar"[icon]="faCancel"></fa-icon> </button>
+                </div>
+                <p>Nombre: <span>{{cliente.nombre}}</span> </p>
+                <p>Apellido: <span> {{cliente.apellido}} </span></p>
+                <p>Genero: <span> {{cliente.genero}} </span></p>
+                <p>direccion: <span> Fracc. {{cliente.direccion.fracc}} Calle {{cliente.direccion.calle}} #{{cliente.direccion.numero}} </span></p>
+            </div>
+        </div>
+
+    </article>
+    <article class="pagination__container">
+        <pagination-controls id="desktopPagination" (pageChange)="pageDesktop = $event" class="my-pagination" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+        <pagination-controls id="mobilePagination" (pageChange)="pageMobile = $event" class="my-pagination" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+    </article>
+</main>
+
+<article class="modal__article" [class.active]="closeBoolean">
+    <div class="modal__container">
+        <h2>Datos del Cliente</h2>
+        <button type="button" class="cancel" (click)="showForm()"><fa-icon class="icon cancel"
+                [icon]="faCancel"></fa-icon>
+        </button>
+
+        <form id="form" [formGroup]="formCliente" (submit)="enviarDatos()">
+            <div class="form__group">
+                <label for="nombre" class="lbl">Nombre</label>
+                <input type="text" id="nombre" class="input" placeholder="Ingrese el Nombre" formControlName="nombre"
+                    maxlength="50" minlength="2" required
+                    [class.invalid]="formCliente.get('nombre')?.invalid && errorFlag">
+                @if(formCliente.get('nombre')?.invalid && errorFlag){
+                <span class="errorForm">Introduce el nombre correctamente</span>
+                }
+            </div>
+            <div class="form__group">
+                <label for="apellido" class="lbl">Apellido</label>
+                <input type="text" id="apellido" class="input" placeholder="Ingrese los Apellidos"
+                    formControlName="apellido" maxlength="50" minlength="2" required
+                    [class.invalid]="formCliente.get('apellido')?.invalid && errorFlag">
+                @if(formCliente.get('apellido')?.invalid && errorFlag){
+                <span class="errorForm">Introduce el apellido correctamente</span>
+                }
+            </div>
+            <div class="form__group">
+                <label for="genero" class="lbl">Genero</label>
+                <!-- <input type="text" class="input" id="genero" placeholder="Ingrese el Genero" formControlName="genero"
+                    required [class.invalid]="formCliente.get('genero')?.invalid && errorFlag"> -->
+                <select name="" id="" formControlName="genero" required required [class.invalid]="formCliente.get('genero')?.invalid && errorFlag">
+                    <option value="" disabled>--- ELIGE ---</option>
+                    <option value="Masculino">Masculino</option>
+                    <option value="Femenino">Femenino</option>
+                </select>
+                @if(formCliente.get('genero')?.invalid && errorFlag){
+                <span class="errorForm">Introduce el genero correctamente</span>
+                }
+            </div>
+
+            <fieldset formGroupName="direccion">
+                <legend>Dirección</legend>
+                <label for="fracc" class="lbl">Fraccionamiento</label>
+                <input type="text" id="fracc" class="input" placeholder="Fraccionamiento" formControlName="fracc"
+                    maxlength="50" minlength="2" required
+                    [class.invalid]="formCliente.get('direccion.fracc')?.invalid && errorFlag">
+                @if(formCliente.get('direccion.fracc')?.invalid && errorFlag){
+                <span class="errorForm">Introduce el Fraccionamiento correctamente</span>
+                }
+                <label for="calle" class="lbl">Calle</label>
+                <input type="text" id="calle" class="input" placeholder="Calle" formControlName="calle" maxlength="50"
+                    minlength="2" required [class.invalid]="formCliente.get('direccion.calle')?.invalid && errorFlag">
+                @if(formCliente.get('direccion.calle')?.invalid && errorFlag){
+                <span class="errorForm">Introduce la Calle correctamente</span>
+                }
+                <label for="numero" class="lbl">Numero de Casa</label>
+                <input type="text" id="numero" class="input" placeholder="Numero de Casa" formControlName="numero"
+                    maxlength="20" minlength="1" required
+                    [class.invalid]="formCliente.get('direccion.numero')?.invalid && errorFlag">
+                @if(formCliente.get('direccion.numero')?.invalid && errorFlag){
+                <span class="errorForm">Introduce el numero de casa correctamente</span>
+                }
+            </fieldset>
+            <div class="form__actions">
+                <button>Enviar</button>
+            </div>
+        </form>
+    </div>
+</article>
+
+<article class="modal__delete" [class.active]="modalDeleteBoolean">
+    <div class="delete__container">
+        <button class="exit" (click)="cancelModal()"> <fa-icon [icon]="faCancel" class="icon cancel"></fa-icon></button>
+        <fa-icon [icon]="faWarning" class="icon ban"></fa-icon>
+        <p>¿Seguro que quieres eliminar el registro?</p>
+        <div class="opc__container">
+            <button class="btn cancel" (click)="cancelModal()">Cancelar</button>
+            <button class="btn delete" (click)="deleteCliente()">Eliminar</button>
+        </div>
+    </div>
+</article>

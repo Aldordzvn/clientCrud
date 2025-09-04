@@ -1,0 +1,31 @@
+@import 'styles/mixins/mixins';
+
+main {
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
+    padding: 0 3rem;
+}
+
+.contenido {
+    display: flex;
+    gap: 2rem;
+    height: 100%;
+    flex: 1;
+}
+
+@include tablet {
+
+    .contenido {
+        width: 100%;
+        gap: 0;
+    }
+}
+
+@include movil{
+    main{
+        height: 100%;
+    }
+
+
+}

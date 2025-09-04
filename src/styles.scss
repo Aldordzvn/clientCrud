@@ -1,18 +1,60 @@
 /* You can add global styles to this file, and also import other style files */
-@import 'normalize';
-:root{
+@import 'normalize.css';
+@import './app/styles/vendsans/vendsansFont.css';
+@import './app/styles/mixins/mixins';
+
+:root {
     --backgroundMain: #F9FAFB;
     --textMain: #111827;
     --border: #F7C566;
-    --borderBtn: #6C0345;
+    --borderBtnAdd: #6C0345;
+    --textButton: #F9FAFB;
     --hoverTextButton: #F9FAFB;
+    --tableButtonBorder: #DC6B19;
+    --hoverTheme: #c99e50;
+    --hoverEditarBtn: #1677FF;
+    --hoverEliminarBtn: #DC3545;
+    --textMenuMobile: #F9FAFB;
+    --borderTable:#F7C566;
+    --backgroundForm: #F9FAFB;
+    --borderMenu: #F7C566;
 }
 
-html{
+.darkMode {
+    --backgroundMain: #121212;
+    --textMain: #F9FAFB;
+    --border: #F7C566;
+    --borderBtnAdd: #6C0345;
+    --textButton: #F9FAFB;
+    --hoverTextButton: #F9FAFB;
+    --tableButtonBorder: #DC6B19;
+    --hoverTheme: #c99e50;
+    --hoverEditarBtn: #1677FF;
+    --hoverEliminarBtn: #DC3545;
+    --textMenuMobile: #F9FAFB;
+    --borderTable:#6C0345;
+    --backgroundForm: #1E1E1E;
+    --borderMenu: #6C0345;
+}
+
+html {
     font-size: 62.5%;
     box-sizing: border-box;
 }
 
-body{
+body {
     font-size: 1.6rem;
+    font-family: 'vendSans';
+    background-color: var(--backgroundMain);
+    // height: 100dvh;
+    color: var(--textMain);
+}
+
+app-clientes {
+    width: 100%;
+}
+
+.no-scroll {
+    overflow: hidden;
+    height: 100dvh;
 }

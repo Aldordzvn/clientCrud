@@ -1,0 +1,38 @@
+<header class="desktop">
+    <button class="btn__theme" (click)="themeMode()">
+        @if(!darkTheme){
+        <fa-icon class="icon theme" [icon]="faMoon"></fa-icon>
+        }@else{
+        <fa-icon class="icon theme" [icon]="faSun"></fa-icon>
+        }
+    </button>
+</header>
+
+<header class="mobile">
+    <button class="btn__menu" (click)="showMenuMobile()">
+        <fa-icon class="icon menu" [icon]="faMenu"></fa-icon>
+    </button>
+    <button class="btn__theme" (click)="themeMode()">
+        @if(!darkTheme){
+        <fa-icon class="icon theme" [icon]="faMoon"></fa-icon>
+        }@else{
+        <fa-icon class="icon theme" [icon]="faSun"></fa-icon>
+        }
+    </button>
+</header>
+
+<div class="menu__mobile--container"
+    [ngClass]="{'activo': activeMenuBoolean, 'slideInLeft': activeMenuBoolean, 'slideOutLeft':modalActivado && !activeMenuBoolean}">
+    <button class="btnSkip" (click)="showMenuMobile()"> <fa-icon class="icon skip" [icon]="faSkip"></fa-icon>
+        Regresar</button>
+    <div class="opc__container">
+        <a [routerLink]="['/clientes']">
+            <fa-icon class="icon clientes" [icon]="faUsers"></fa-icon>
+            Clientes
+        </a>
+        <a routerLink="/about">
+            <fa-icon class="icon nosotros" [icon]="faInfo"></fa-icon>
+            About Us
+        </a>
+    </div>
+</div>

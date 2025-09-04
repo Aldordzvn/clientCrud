@@ -1,0 +1,35 @@
+@import '../styles/mixins/mixins';
+
+footer {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+}
+
+.icon {
+    font-size: 3.5rem;
+}
+
+.social__container {
+    display: flex;
+    gap: 2rem;
+    margin: 0 0 0 2rem;
+}
+
+a {
+    color: var(--textMain);
+
+    &:hover {
+        color: var(--borderMenu);
+    }
+}
+
+@include tablet {
+    footer {
+        justify-content: center;
+    }
+
+    .social__container {
+        margin: 0;
+    }
+}

@@ -1,0 +1,213 @@
+@import '../styles/mixins/mixins';
+
+header {
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    height: 5rem;
+    align-items: center;
+
+    &.mobile {
+        display: none;
+    }
+}
+
+button {
+    width: max-content;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.icon {
+    font-size: 3rem;
+
+    &.theme {
+        color: var(--border);
+
+        &:hover {
+            color: var(--hoverTheme);
+        }
+    }
+}
+
+.menu__mobile--container{
+    display: none;
+}
+
+@include tablet {
+    header {
+        &.desktop {
+            display: none;
+        }
+
+        &.mobile {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+
+    .menu__mobile--container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 25rem;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: rgba(18, 18, 18, 0.75);
+        backdrop-filter: blur(14px);
+        transform: translate(-100%);
+        // visibility: hidden;
+    }
+
+    // .activo{
+    //     display: flex;
+    // }
+
+    .opc__container {
+        display: flex;
+        flex-direction: column;
+        margin: auto 0;
+        gap: 3rem;
+
+        a {
+            text-decoration: none;
+            color: var(--textMenuMobile);
+            display: flex;
+            align-items: center;
+            background-color: transparent;
+            border: 2px solid var(--border);
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            padding: 1rem 2rem;
+            width: max-content;
+            gap: 1rem;
+
+            &:hover {
+                background-color: var(--border);
+                color: var(--textMain);
+            }
+
+            & fa-icon {
+                color: inherit;
+            }
+        }
+    }
+
+    .icon {
+        color: var(--textMenuMobile);
+
+        &:hover {
+            color: unset;
+        }
+
+        &.menu{
+            color: var(--border);
+        }
+
+    }
+
+    button {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        width: max-content;
+        font-size: 2.3rem;
+        font-weight: bold;
+        color: var(--textMenuMobile);
+
+        & fa-icon {
+            color: inherit;
+        }
+
+        &.btnSkip {
+            align-self: flex-start;
+            margin: 2rem 0 0 1rem;
+
+            &:hover {
+                color: var(--border);
+            }
+        }
+    }
+
+    .slideInLeft {
+        -webkit-animation-name: slideInLeft;
+        animation-name: slideInLeft;
+        -webkit-animation-duration: 1s;
+        animation-duration: 1s;
+        -webkit-animation-fill-mode: both;
+        animation-fill-mode: both;
+    }
+
+    @-webkit-keyframes slideInLeft {
+        0% {
+            -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+            visibility: visible;
+        }
+
+        100% {
+            -webkit-transform: translateX(0);
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes slideInLeft {
+        0% {
+            -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+            visibility: visible;
+        }
+
+        100% {
+            -webkit-transform: translateX(0);
+            transform: translateX(0);
+            visibility: visible;
+        }
+    }
+
+    .slideOutLeft {
+        -webkit-animation-name: slideOutLeft;
+        animation-name: slideOutLeft;
+        -webkit-animation-duration: 1s;
+        animation-duration: 1s;
+        -webkit-animation-fill-mode: both;
+        animation-fill-mode: both;
+    }
+
+    @-webkit-keyframes slideOutLeft {
+        0% {
+            -webkit-transform: translateX(0);
+            transform: translateX(0);
+        }
+
+        100% {
+            -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+            visibility: hidden;
+        }
+    }
+
+    @keyframes slideOutLeft {
+        0% {
+            -webkit-transform: translateX(0);
+            transform: translateX(0);
+        }
+
+        100% {
+            -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+            visibility: hidden;
+        }
+    }
+}
+
+@include movil{
+    .menu__mobile--container{
+        width: 100%;
+    }
+}
