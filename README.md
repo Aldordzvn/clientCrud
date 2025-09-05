@@ -1,4 +1,30 @@
-# ClientCrud
+# CRUD | Angular v19 | RxJS
+
+## Administrador de Clientes 
+
+Es un CRUD API REST sobre datos de clientes con estado reactivo con RxJS, Formulario reactivos y consumo de API REST con Firebase Realtime Database, todo con componentes Standalone y diseño adaptable.
+
+---
+
+## Funciones
+- Añade, edita, elimina y lee registros de clientes.
+- Formularios de creación/edición implementados con Reactive Forms.
+- Persistencia de datos en Firebase Realtime Database.
+- Íconos con Font Awesome para una UI clara y accesible.
+- Enfoque en practicar y ejemplificar RxJS (operadores, gestión de suscripciones, Subjects).
+- Diseño responsive y adaptive para múltiples dispositivos.
+
+---
+
+## Características
+- Angular v19 (Standalone components) — arquitectura modular, sin NgModules innecesarios.
+- RxJS: Tap, Map para el manejo de estado y errores.
+- Reactive Forms: validaciones dinámicas, control de estado y formularios reutilizables.
+- Firebase Realtime DB: sincronización en tiempo real.
+- Font Awesome: iconografía consistente para acciones CRUD y estados.
+- Responsive y adaptive design: mobile-first, breakpoints bien definidos.
+- Buenas prácticas: separación de responsabilidades (services y componentes), typing fuerte con TypeScript.
+
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.6.
 
